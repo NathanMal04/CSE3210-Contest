@@ -2,14 +2,13 @@ INCLUDE Contest.inc
 
 
 .data
-lvlLab    BYTE "LVL: ",0
+healLab   BYTE "  Heal Pots: ",0
 plLab     BYTE "YOU  HP: ",0
 enLab     BYTE "Enemy  HP: ",0
 atkLab    BYTE "  ATK: ",0
 defLab    BYTE "  DEF: ",0
 slash     BYTE " / ",0
 bar       BYTE "------------------------------",0
-menu      BYTE "Choose: 1)Attack  2)Heal  9)Quit  >",0
 
 .code
 ; Print Functions
@@ -54,6 +53,8 @@ DisplayPlayer PROC
     INVOKE PrintNum, gPlayerDEF
     INVOKE PrintStr, ADDR atkLab
     INVOKE PrintNum, gPlayerATK
+    INVOKE PrintStr, ADDR healLab
+    INVOKE PrintNum, gHealPots
     INVOKE PrintCRLF
     ret
 DisplayPlayer ENDP
@@ -77,8 +78,4 @@ DisplayBar PROC
     ret
 DisplayBar ENDP
 
-DisplayMenu PROC
-    INVOKE PrintStr, ADDR menu
-    ret
-DisplayMenu ENDP
 END
