@@ -1,1 +1,21 @@
 INCLUDE Contest.inc
+
+.data
+; ----Local----
+
+; ----Global----
+
+; misc
+PUBLIC gLevel DWORD 1
+
+; player
+PUBLIC gPlayerHP     DWORD PLAYER_BASE_HP
+PUBLIC gPlayerMaxHP  DWORD PLAYER_BASE_HP
+PUBLIC gPlayerATK    DWORD PLAYER_BASE_ATK
+PUBLIC gPlayerDEF    DWORD PLAYER_BASE_DEF
+
+; enemy
+PUBLIC gEnemyHP      DWORD ENEMY_BASE_HP
+PUBLIC gEnemyMaxHP   DWORD ENEMY_BASE_HP
+PUBLIC gEnemyATK     DWORD ENEMY_BASE_ATK
+PUBLIC gEnemyDEF     DWORD ENEMY_BASE_DEF

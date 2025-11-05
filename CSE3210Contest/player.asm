@@ -1,0 +1,2 @@
+INCLUDE Contest.inc
+

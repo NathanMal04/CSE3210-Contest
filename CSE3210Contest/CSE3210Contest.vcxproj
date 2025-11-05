@@ -125,6 +125,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <MASM Include="main.asm" />
+    <MASM Include="player.asm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Contest.inc" />
