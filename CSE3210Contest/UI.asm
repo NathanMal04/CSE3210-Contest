@@ -8,7 +8,8 @@ enLab     BYTE "Enemy  HP: ",0
 atkLab    BYTE "  ATK: ",0
 defLab    BYTE "  DEF: ",0
 slash     BYTE " / ",0
-bar      BYTE "------------------------------",0
+bar       BYTE "------------------------------",0
+menu      BYTE "Choose: 1)Attack  2)Heal  9)Quit  >",0
 
 .code
 ; Print Functions
@@ -37,9 +38,9 @@ PrintNum ENDP
 ; Display information
 DisplayPlayer PROC
     INVOKE PrintStr, ADDR plLab
-    INVOKE PrintNum, gPlayerMaxHP
-    INVOKE PrintStr, ADDR slash
     INVOKE PrintNum, gPlayerHP
+    INVOKE PrintStr, ADDR slash
+    INVOKE PrintNum, gPlayerMaxHP
     INVOKE PrintStr, ADDR defLab
     INVOKE PrintNum, gPlayerDEF
     INVOKE PrintStr, ADDR atkLab
@@ -50,9 +51,9 @@ DisplayPlayer ENDP
 
 DisplayEnemy PROC
     INVOKE PrintStr, ADDR enLab
-    INVOKE PrintNum, gEnemyMaxHP
-    INVOKE PrintStr, ADDR slash
     INVOKE PrintNum, gEnemyHP
+    INVOKE PrintStr, ADDR slash
+    INVOKE PrintNum, gEnemyMaxHP
     INVOKE PrintStr, ADDR defLab
     INVOKE PrintNum, gEnemyDEF
     INVOKE PrintStr, ADDR atkLab
@@ -60,4 +61,15 @@ DisplayEnemy PROC
     INVOKE PrintCRLF
     ret
 DisplayEnemy ENDP
+
+DisplayBar PROC
+    INVOKE PrintStr, ADDR bar
+    INVOKE PrintCRLF
+    ret
+DisplayBar ENDP
+
+DisplayMenu PROC
+    INVOKE PrintStr, ADDR menu
+    ret
+DisplayMenu ENDP
 END

@@ -7,7 +7,12 @@ INCLUDE Contest.inc
 
 ; misc
 PUBLIC gLevel
-gLevel DWORD 0
+PUBLIC gGold
+PUBLIC gGameState
+
+gLevel		DWORD 0
+gGold		DWORD 0
+gGameState	DWORD 1
 
 ; player
 PUBLIC gPlayerHP
@@ -34,10 +39,16 @@ gEnemyDEF     DWORD ENEMY_BASE_DEF
 .code
 PUBLIC main
 main PROC
-	INVOKE DisplayPlayer
-	INVOKE DisplayEnemy
-	INVOKE CreateEnemy
-	INVOKE DisplayEnemy
+Battle:
+	INVOKE BattleLoop
+	MOV EAX, gGameState
+	CMP EAX, 0
+	JZ Quit
+Shop:
+	MOV EAX, gGameState
+	CMP EAX, 0
+	JG Battle
+Quit:
 	exit
 main ENDP
 END main
