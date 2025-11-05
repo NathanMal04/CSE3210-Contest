@@ -24,8 +24,17 @@
     <MASM Include="player.asm">
       <Filter>Source Files</Filter>
     </MASM>
-    <MASM Include="b32.asm">
-      <Filter>Irvine</Filter>
+    <MASM Include="battle.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+    <MASM Include="shop.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+    <MASM Include="enemy.asm">
+      <Filter>Source Files</Filter>
+    </MASM>
+    <MASM Include="UI.asm">
+      <Filter>Source Files</Filter>
     </MASM>
   </ItemGroup>
   <ItemGroup>
@@ -35,13 +44,7 @@
     <None Include="Irvine32.inc">
       <Filter>Irvine</Filter>
     </None>
-    <None Include="GraphWin.inc">
-      <Filter>Irvine</Filter>
-    </None>
     <None Include="Macros.inc">
-      <Filter>Irvine</Filter>
-    </None>
-    <None Include="SmallWin.inc">
       <Filter>Irvine</Filter>
     </None>
     <None Include="VirtualKeys.inc">

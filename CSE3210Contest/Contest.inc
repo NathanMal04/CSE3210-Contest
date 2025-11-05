@@ -46,3 +46,11 @@ EXTERNDEF gEnemyDEF:DWORD
 
 ; misc values
 EXTERNDEF gLevel:DWORD
+
+; ----Prototypes----
+
+; ui
+PrintCRLF		PROTO
+PrintStr		PROTO pStr:PTR BYTE
+PrintNum		PROTO val:DWORD
+DisplayPlayer	PROTO

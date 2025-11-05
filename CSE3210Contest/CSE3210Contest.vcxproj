@@ -81,6 +81,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -124,16 +125,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <MASM Include="b32.asm" />
+    <MASM Include="battle.asm" />
+    <MASM Include="enemy.asm" />
     <MASM Include="main.asm" />
     <MASM Include="player.asm" />
+    <MASM Include="shop.asm" />
+    <MASM Include="UI.asm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Contest.inc" />
-    <None Include="GraphWin.inc" />
     <None Include="Irvine32.inc" />
     <None Include="Macros.inc" />
-    <None Include="SmallWin.inc" />
     <None Include="VirtualKeys.inc" />
   </ItemGroup>
   <ItemGroup>

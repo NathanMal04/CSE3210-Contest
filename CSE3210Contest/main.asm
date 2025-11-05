@@ -25,10 +25,16 @@ PUBLIC gEnemyHP
 PUBLIC gEnemyMaxHP
 PUBLIC gEnemyATK
 PUBLIC gEnemyDEF
+
 gEnemyHP      DWORD ENEMY_BASE_HP
 gEnemyMaxHP   DWORD ENEMY_BASE_HP
 gEnemyATK     DWORD ENEMY_BASE_ATK
 gEnemyDEF     DWORD ENEMY_BASE_DEF
 
 .code
-END
+PUBLIC main
+main PROC
+	INVOKE DisplayPlayer
+	exit
+main ENDP
+END main
