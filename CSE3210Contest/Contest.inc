@@ -51,6 +51,8 @@ EXTERNDEF gLevel:DWORD
 
 ; ui
 PrintCRLF		PROTO
+ClearScreen		PROTO
 PrintStr		PROTO pStr:PTR BYTE
 PrintNum		PROTO val:DWORD
 DisplayPlayer	PROTO
+DisplayEnemy	PROTO

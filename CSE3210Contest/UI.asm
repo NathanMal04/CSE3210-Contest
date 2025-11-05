@@ -4,10 +4,11 @@ INCLUDE Contest.inc
 .data
 lvlLab    BYTE "LVL: ",0
 plLab     BYTE "YOU  HP: ",0
-foeLab    BYTE "FOE  HP: ",0
-slash     BYTE " / ",0
+enLab     BYTE "Enemy  HP: ",0
 atkLab    BYTE "  ATK: ",0
 defLab    BYTE "  DEF: ",0
+slash     BYTE " / ",0
+bar      BYTE "------------------------------",0
 
 .code
 ; Print Functions
@@ -15,6 +16,11 @@ PrintCRLF PROC
     call Crlf
     ret
 PrintCRLF ENDP
+
+ClearScreen PROC
+    call Clrscr
+    ret
+ClearScreen ENDP
 
 PrintStr PROC pStr:PTR BYTE
     mov  edx, pStr
@@ -34,11 +40,24 @@ DisplayPlayer PROC
     INVOKE PrintNum, gPlayerMaxHP
     INVOKE PrintStr, ADDR slash
     INVOKE PrintNum, gPlayerHP
-    INVOKE PrintStr, ADDR defLAB
+    INVOKE PrintStr, ADDR defLab
     INVOKE PrintNum, gPlayerDEF
-    INVOKE PrintStr, ADDR atkLAB
+    INVOKE PrintStr, ADDR atkLab
     INVOKE PrintNum, gPlayerATK
     INVOKE PrintCRLF
     ret
 DisplayPlayer ENDP
+
+DisplayEnemy PROC
+    INVOKE PrintStr, ADDR enLab
+    INVOKE PrintNum, gPlayerMaxHP
+    INVOKE PrintStr, ADDR slash
+    INVOKE PrintNum, gPlayerHP
+    INVOKE PrintStr, ADDR defLab
+    INVOKE PrintNum, gPlayerDEF
+    INVOKE PrintStr, ADDR atkLab
+    INVOKE PrintNum, gPlayerATK
+    INVOKE PrintCRLF
+    ret
+DisplayEnemy ENDP
 END

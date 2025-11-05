@@ -35,6 +35,8 @@ gEnemyDEF     DWORD ENEMY_BASE_DEF
 PUBLIC main
 main PROC
 	INVOKE DisplayPlayer
+	INVOKE DisplayEnemy
+	INVOKE ClearScreen
 	exit
 main ENDP
 END main
