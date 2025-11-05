@@ -24,13 +24,22 @@ ClearScreen PROC
 ClearScreen ENDP
 
 PrintStr PROC pStr:PTR BYTE
-    mov  edx, pStr
+    MOV  EDX, pStr
     call WriteString
     ret
 PrintStr ENDP
 
 PrintNum PROC val:DWORD
-    mov eax, val
+    MOV EAX, val
+    TEST EAX, EAX
+    JNS Positive
+
+    PUSH EAX
+    MOV AL, '-'
+    call WriteChar
+    POP EAX
+    NEG EAX
+Positive:
     call WriteDec
     ret
 PrintNum ENDP

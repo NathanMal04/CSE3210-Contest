@@ -47,7 +47,7 @@ Battle:
 Shop:
 	MOV EAX, gGameState
 	CMP EAX, 0
-	JG Battle
+	JNZ Battle
 Quit:
 	exit
 main ENDP
