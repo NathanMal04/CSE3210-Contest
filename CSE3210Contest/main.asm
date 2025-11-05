@@ -7,7 +7,7 @@ INCLUDE Contest.inc
 
 ; misc
 PUBLIC gLevel
-gLevel DWORD 1
+gLevel DWORD 0
 
 ; player
 PUBLIC gPlayerHP
@@ -36,7 +36,8 @@ PUBLIC main
 main PROC
 	INVOKE DisplayPlayer
 	INVOKE DisplayEnemy
-	INVOKE ClearScreen
+	INVOKE CreateEnemy
+	INVOKE DisplayEnemy
 	exit
 main ENDP
 END main

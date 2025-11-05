@@ -50,13 +50,13 @@ DisplayPlayer ENDP
 
 DisplayEnemy PROC
     INVOKE PrintStr, ADDR enLab
-    INVOKE PrintNum, gPlayerMaxHP
+    INVOKE PrintNum, gEnemyMaxHP
     INVOKE PrintStr, ADDR slash
-    INVOKE PrintNum, gPlayerHP
+    INVOKE PrintNum, gEnemyHP
     INVOKE PrintStr, ADDR defLab
-    INVOKE PrintNum, gPlayerDEF
+    INVOKE PrintNum, gEnemyDEF
     INVOKE PrintStr, ADDR atkLab
-    INVOKE PrintNum, gPlayerATK
+    INVOKE PrintNum, gEnemyATK
     INVOKE PrintCRLF
     ret
 DisplayEnemy ENDP

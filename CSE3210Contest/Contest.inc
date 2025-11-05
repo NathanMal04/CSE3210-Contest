@@ -46,6 +46,7 @@ EXTERNDEF gEnemyDEF:DWORD
 
 ; misc values
 EXTERNDEF gLevel:DWORD
+EXTERNDEF gGold:DWORD
 
 ; ----Prototypes----
 
@@ -56,3 +57,6 @@ PrintStr		PROTO pStr:PTR BYTE
 PrintNum		PROTO val:DWORD
 DisplayPlayer	PROTO
 DisplayEnemy	PROTO
+
+; enemy
+CreateEnemy		PROTO
