@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Irvine">
+      <UniqueIdentifier>{4971aa73-9d66-4f90-9628-02866e9409c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="main.asm">
@@ -21,10 +24,39 @@
     <MASM Include="player.asm">
       <Filter>Source Files</Filter>
     </MASM>
+    <MASM Include="b32.asm">
+      <Filter>Irvine</Filter>
+    </MASM>
   </ItemGroup>
   <ItemGroup>
     <None Include="Contest.inc">
       <Filter>Header Files</Filter>
     </None>
+    <None Include="Irvine32.inc">
+      <Filter>Irvine</Filter>
+    </None>
+    <None Include="GraphWin.inc">
+      <Filter>Irvine</Filter>
+    </None>
+    <None Include="Macros.inc">
+      <Filter>Irvine</Filter>
+    </None>
+    <None Include="SmallWin.inc">
+      <Filter>Irvine</Filter>
+    </None>
+    <None Include="VirtualKeys.inc">
+      <Filter>Irvine</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="Irvine32.lib">
+      <Filter>Irvine</Filter>
+    </Library>
+    <Library Include="Kernel32.Lib">
+      <Filter>Irvine</Filter>
+    </Library>
+    <Library Include="User32.Lib">
+      <Filter>Irvine</Filter>
+    </Library>
   </ItemGroup>
 </Project>
