@@ -11,7 +11,7 @@ PUBLIC gGold
 PUBLIC gGameState
 
 gLevel		DWORD 0
-gGold		DWORD 100
+gGold		DWORD 1000
 gGameState	DWORD 1
 
 ; player

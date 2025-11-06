@@ -16,7 +16,7 @@ Shop PROC
 MainLoop:
 	INVOKE DisplayPlayer
 	INVOKE PrintStr, ADDR gold
-	INVOKE PrintNum, gold
+	INVOKE PrintNum, gGold
 	INVOKE PrintCRLF
 	INVOKE PrintStr, ADDR menu1
 	INVOKE PrintNum, gShopHP
@@ -41,6 +41,7 @@ MainLoop:
 	JE Quit
 
 HP:
+	INVOKE ClearScreen
 	MOV EAX, gGold
 	CMP EAX, gShopHP
 	JGE uHP
@@ -49,7 +50,18 @@ HP:
 	call ReadChar
 	JMP MainLoop
 uHP:
+	MOV EAX, gGold
+	SUB EAX, gShopHP
+	MOV gGold, EAX
+	ADD gShopHP, PLAYER_UPGRADE_HP_PRICE_INC
+	ADD gPlayerHP, PLAYER_UPGRADE_HP
+	ADD gPlayerMaxHP, PLAYER_UPGRADE_HP
+	INVOKE PrintStr, ADDR purchase
+	INVOKE PrintStr, ADDR continue
+	call ReadChar
+	JMP MainLoop
 ATK:
+	INVOKE ClearScreen
 	MOV EAX, gGold
 	CMP EAX, gShopATK
 	JGE uHP
@@ -58,7 +70,17 @@ ATK:
 	call ReadChar
 	JMP MainLoop
 uATK:
+	MOV EAX, gGold
+	SUB EAX, gShopATK
+	MOV gGold, EAX
+	ADD gShopATK, PLAYER_UPGRADE_ATK_PRICE_INC
+	ADD gPlayerATK, PLAYER_UPGRADE_ATK
+	INVOKE PrintStr, ADDR purchase
+	INVOKE PrintStr, ADDR continue
+	call ReadChar
+	JMP MainLoop
 DEF:
+	INVOKE ClearScreen
 	MOV EAX, gGold
 	CMP EAX, gShopDEF
 	JGE uHP
@@ -67,7 +89,17 @@ DEF:
 	call ReadChar
 	JMP MainLoop
 uDEF:
+	MOV EAX, gGold
+	SUB EAX, gShopDEF
+	MOV gGold, EAX
+	ADD gShopDEF, PLAYER_UPGRADE_DEF_PRICE_INC
+	ADD gPlayerDEF, PLAYER_UPGRADE_DEF
+	INVOKE PrintStr, ADDR purchase
+	INVOKE PrintStr, ADDR continue
+	call ReadChar
+	JMP MainLoop
 HPot:
+	INVOKE ClearScreen
 	MOV EAX, gGold
 	CMP EAX, gShopHP
 	JGE uHP
@@ -76,6 +108,15 @@ HPot:
 	call ReadChar
 	JMP MainLoop
 uHPot:
+	MOV EAX, gGold
+	SUB EAX, gShopHPot
+	MOV gGold, EAX
+	ADD gShopHPot, PLAYER_UPGRADE_HPot_PRICE_INC
+	INC gHealPots
+	INVOKE PrintStr, ADDR purchase
+	INVOKE PrintStr, ADDR continue
+	call ReadChar
+	JMP MainLoop
 Quit:
 	ret
 Shop ENDP
