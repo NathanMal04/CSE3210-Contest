@@ -1,7 +1,6 @@
 INCLUDE Contest.inc
 
 .code
-
 ; sets up the enemy to have inceasing stats over time
 CreateEnemy PROC
 	MOV EAX, ENEMY_STEP_HP

@@ -30,11 +30,14 @@ MainLoop:
 	CMP al, '2'
 	JE Heal
 
+	JMP MainLoop
+
 Attack:
 	MOV EAX, gPlayerATK
 	SHR EAX, 2
 	MOV EBX, EAX
 	SHR EBX, 1
+	INC EAX
 	CALL RandomRange
 	SUB EAX, EBX
 	ADD EAX, gPlayerATK
@@ -57,6 +60,7 @@ Attack:
 	SHR EAX, 2
 	MOV EBX, EAX
 	SHR EBX, 1
+	INC EAX
 	CALL RandomRange
 	SUB EAX, EBX
 	ADD EAX, gEnemyATK

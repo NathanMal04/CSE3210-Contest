@@ -11,7 +11,7 @@ PUBLIC gGold
 PUBLIC gGameState
 
 gLevel		DWORD 0
-gGold		DWORD 0
+gGold		DWORD 100
 gGameState	DWORD 1
 
 ; player
@@ -20,6 +20,7 @@ PUBLIC gPlayerMaxHP
 PUBLIC gPlayerATK 
 PUBLIC gPlayerDEF
 PUBLIC gHealPots
+PUBLIC gHealing
 
 gPlayerHP     DWORD PLAYER_BASE_HP
 gPlayerMaxHP  DWORD PLAYER_BASE_HP
@@ -43,25 +44,26 @@ gEnemyDEF     DWORD ENEMY_BASE_DEF
 PUBLIC gShopHP
 PUBLIC gShopATK
 PUBLIC gShopDEF
+PUBLIC gShopHPot
 
 gShopHP		DWORD PLAYER_UPGRADE_HP_PRICE
 gShopATK	DWORD PLAYER_UPGRADE_DEF_PRICE
 gShopDEF	DWORD PLAYER_UPGRADE_ATK_PRICE
+gShopHPot	DWORD PLAYER_UPGRADE_HPot_PRICE
 
 
 .code
 PUBLIC main
 main PROC
 Battle:
-	INVOKE BattleLoop
+	;INVOKE BattleLoop
 	MOV EAX, gGameState
 	CMP EAX, 0
 	JZ Quit
 	INC gLevel
-Shop:
-	MOV EAX, gGameState
-	CMP EAX, 0
-	JNZ Battle
+
+	INVOKE Shop
+	JMP Battle
 Quit:
 	exit
 main ENDP
