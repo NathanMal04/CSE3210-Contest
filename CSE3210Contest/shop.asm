@@ -14,6 +14,7 @@ continue	BYTE "Press any key to continue",0
 .code
 Shop PROC
 MainLoop:
+	INVOKE ClearScreen
 	INVOKE DisplayPlayer
 	INVOKE PrintStr, ADDR gold
 	INVOKE PrintNum, gGold
@@ -46,6 +47,7 @@ HP:
 	CMP EAX, gShopHP
 	JGE uHP
 	INVOKE PrintStr, ADDR broke
+	INVOKE PrintCRLF
 	INVOKE PrintStr, ADDR continue
 	call ReadChar
 	JMP MainLoop
@@ -57,6 +59,7 @@ uHP:
 	ADD gPlayerHP, PLAYER_UPGRADE_HP
 	ADD gPlayerMaxHP, PLAYER_UPGRADE_HP
 	INVOKE PrintStr, ADDR purchase
+	INVOKE PrintCRLF
 	INVOKE PrintStr, ADDR continue
 	call ReadChar
 	JMP MainLoop
@@ -64,8 +67,9 @@ ATK:
 	INVOKE ClearScreen
 	MOV EAX, gGold
 	CMP EAX, gShopATK
-	JGE uHP
+	JGE uATK
 	INVOKE PrintStr, ADDR broke
+	INVOKE PrintCRLF
 	INVOKE PrintStr, ADDR continue
 	call ReadChar
 	JMP MainLoop
@@ -76,6 +80,7 @@ uATK:
 	ADD gShopATK, PLAYER_UPGRADE_ATK_PRICE_INC
 	ADD gPlayerATK, PLAYER_UPGRADE_ATK
 	INVOKE PrintStr, ADDR purchase
+	INVOKE PrintCRLF
 	INVOKE PrintStr, ADDR continue
 	call ReadChar
 	JMP MainLoop
@@ -83,8 +88,9 @@ DEF:
 	INVOKE ClearScreen
 	MOV EAX, gGold
 	CMP EAX, gShopDEF
-	JGE uHP
+	JGE uDEF
 	INVOKE PrintStr, ADDR broke
+	INVOKE PrintCRLF
 	INVOKE PrintStr, ADDR continue
 	call ReadChar
 	JMP MainLoop
@@ -95,6 +101,7 @@ uDEF:
 	ADD gShopDEF, PLAYER_UPGRADE_DEF_PRICE_INC
 	ADD gPlayerDEF, PLAYER_UPGRADE_DEF
 	INVOKE PrintStr, ADDR purchase
+	INVOKE PrintCRLF
 	INVOKE PrintStr, ADDR continue
 	call ReadChar
 	JMP MainLoop
@@ -102,8 +109,9 @@ HPot:
 	INVOKE ClearScreen
 	MOV EAX, gGold
 	CMP EAX, gShopHP
-	JGE uHP
+	JGE uHPot
 	INVOKE PrintStr, ADDR broke
+	INVOKE PrintCRLF
 	INVOKE PrintStr, ADDR continue
 	call ReadChar
 	JMP MainLoop
@@ -114,6 +122,7 @@ uHPot:
 	ADD gShopHPot, PLAYER_UPGRADE_HPot_PRICE_INC
 	INC gHealPots
 	INVOKE PrintStr, ADDR purchase
+	INVOKE PrintCRLF
 	INVOKE PrintStr, ADDR continue
 	call ReadChar
 	JMP MainLoop

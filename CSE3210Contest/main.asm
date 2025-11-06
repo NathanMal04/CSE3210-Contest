@@ -10,8 +10,8 @@ PUBLIC gLevel
 PUBLIC gGold
 PUBLIC gGameState
 
-gLevel		DWORD 0
-gGold		DWORD 1000
+gLevel		DWORD 1
+gGold		DWORD 0
 gGameState	DWORD 1
 
 ; player
@@ -56,7 +56,7 @@ gShopHPot	DWORD PLAYER_UPGRADE_HPot_PRICE
 PUBLIC main
 main PROC
 Battle:
-	;INVOKE BattleLoop
+	INVOKE BattleLoop
 	MOV EAX, gGameState
 	CMP EAX, 0
 	JZ Quit

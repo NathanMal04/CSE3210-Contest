@@ -93,10 +93,10 @@ Heal:
 	CMP EAX, gPlayerMaxHP
 	JLE DisplayHeal
 	MOV EAX, gPlayerMaxHP
-	SUB EAX, gPlayerHP
-	MOV EBX, EAX
 DisplayHeal:
-	ADD gPlayerHP, EAX
+	MOV EBX, EAX
+	SUB EBX, gPlayerHP
+	MOV gPlayerHP, EAX
 	PrintStats
 	INVOKE PrintStr, ADDR startHeal
 	INVOKE PrintNum, EBX
@@ -125,6 +125,7 @@ WinBattle:
 	INVOKE PrintStr, ADDR continue
 	call ReadChar
 	MOV EAX, 20
+	MOV EDX, 0
 	MUL gLevel
 	ADD gGold, EAX
 	INVOKE CreateEnemy
