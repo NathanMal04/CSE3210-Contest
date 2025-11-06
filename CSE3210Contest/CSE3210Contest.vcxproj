@@ -128,7 +128,6 @@
     <MASM Include="battle.asm" />
     <MASM Include="enemy.asm" />
     <MASM Include="main.asm" />
-    <MASM Include="player.asm" />
     <MASM Include="shop.asm" />
     <MASM Include="UI.asm" />
   </ItemGroup>

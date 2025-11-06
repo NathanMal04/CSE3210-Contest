@@ -21,9 +21,6 @@
     <MASM Include="main.asm">
       <Filter>Source Files</Filter>
     </MASM>
-    <MASM Include="player.asm">
-      <Filter>Source Files</Filter>
-    </MASM>
     <MASM Include="battle.asm">
       <Filter>Source Files</Filter>
     </MASM>

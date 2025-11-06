@@ -20,7 +20,6 @@ PrintStats MACRO
 	INVOKE DisplayBar
 ENDM
 
-PUBLIC BattleLoop
 BattleLoop PROC
 MainLoop:
 	PrintStats
@@ -82,10 +81,10 @@ Heal:
 	CMP gHealPots, 0
 	JE OutOfPots
 	DEC gHealPots
-	MOV EAX, HEAL_MIN
+	MOV EAX, gHealing
 	INC EAX
 	call RandomRange
-	ADD EAX, HEAL_MIN
+	ADD EAX, gHealing
 	ADD EAX, gPlayerHP
 	CMP EAX, gPlayerMaxHP
 	JLE DisplayHeal
