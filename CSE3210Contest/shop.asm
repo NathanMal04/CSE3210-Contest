@@ -8,6 +8,8 @@ menu4		BYTE "  4)Health Potion: $",0
 menu5		BYTE "  5)Exit  >",0
 gold		BYTE "Gold: ",0
 broke		BYTE "Not enough gold",0
+purchase	BYTE "Upgrade purchased",0
+continue	BYTE "Press any key to continue",0
 
 .code
 Shop PROC
@@ -38,13 +40,44 @@ MainLoop:
 	CMP al, '5'
 	JE Quit
 
-	HP:
-	ATK:
-	DEF:
-	HPot:
-	Quit:
+HP:
+	MOV EAX, gGold
+	CMP EAX, gShopHP
+	JGE uHP
+	INVOKE PrintStr, ADDR broke
+	INVOKE PrintStr, ADDR continue
+	call ReadChar
 	JMP MainLoop
-
+uHP:
+ATK:
+	MOV EAX, gGold
+	CMP EAX, gShopATK
+	JGE uHP
+	INVOKE PrintStr, ADDR broke
+	INVOKE PrintStr, ADDR continue
+	call ReadChar
+	JMP MainLoop
+uATK:
+DEF:
+	MOV EAX, gGold
+	CMP EAX, gShopDEF
+	JGE uHP
+	INVOKE PrintStr, ADDR broke
+	INVOKE PrintStr, ADDR continue
+	call ReadChar
+	JMP MainLoop
+uDEF:
+HPot:
+	MOV EAX, gGold
+	CMP EAX, gShopHP
+	JGE uHP
+	INVOKE PrintStr, ADDR broke
+	INVOKE PrintStr, ADDR continue
+	call ReadChar
+	JMP MainLoop
+uHPot:
+Quit:
+	ret
 Shop ENDP
 
 END
