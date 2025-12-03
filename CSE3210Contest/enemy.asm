@@ -30,19 +30,21 @@ LevelUpEnemy PROC
 LevelUpEnemy ENDP
 	
 CreateEnemy PROC
+	MOV EAX, 3
+	call RandomRange
+	INC EAX
+	MOV gEnemyCount, EAX
+	MOV ECX, gEnemyCount
+	InitEnemyLoop:
+		MOV EAX, gEnemyMaxHP
+		MOV gEnemies[SIZEOF Enemy].HP, EAX
+		MOV gEnemies[SIZEOF Enemy].MaxHP, EAX
+		MOV EAX, gEnemyATK
+		MOV gEnemies[SIZEOF Enemy].ATK, EAX
+		MOV EAX, gEnemyDEF
+		MOV gEnemies[SIZEOF Enemy].DEF, EAX
+		LOOP InitEnemyLoop
 	ret
 CreateEnemy ENDP
-
-CreateSingleEnemy PROC
-	MOV gEnemyCount, 1
-	MOV EAX, gEnemyMaxHP
-	MOV gEnemies[SIZEOF Enemy].HP, EAX
-	MOV gEnemies[SIZEOF Enemy].MaxHP, EAX
-	MOV EAX, gEnemyATK
-	MOV gEnemies[SIZEOF Enemy].ATK, EAX
-	MOV EAX, gEnemyDEF
-	MOV gEnemies[SIZEOF Enemy].DEF, EAX
-	ret
-CreateSingleEnemy ENDP
 
 END
