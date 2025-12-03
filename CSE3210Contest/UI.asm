@@ -59,15 +59,17 @@ DisplayPlayer PROC
     ret
 DisplayPlayer ENDP
 
-DisplayEnemy PROC
+DisplayEnemy PROC EnemyNumber:DWORD
+    MOV ESI, SIZEOF Enemy
+    IMUL ESI, EnemyNumber
     INVOKE PrintStr, ADDR enLab
-    INVOKE PrintNum, gEnemyHP
+    INVOKE PrintNum, gEnemies[ESI].HP
     INVOKE PrintStr, ADDR slash
-    INVOKE PrintNum, gEnemyMaxHP
+    INVOKE PrintNum, gEnemies[ESI].MaxHP
     INVOKE PrintStr, ADDR defLab
-    INVOKE PrintNum, gEnemyDEF
+    INVOKE PrintNum, gEnemies[ESI].DEF
     INVOKE PrintStr, ADDR atkLab
-    INVOKE PrintNum, gEnemyATK
+    INVOKE PrintNum, gEnemies[ESI].ATK
     INVOKE PrintCRLF
     ret
 DisplayEnemy ENDP

@@ -1,12 +1,4 @@
 INCLUDE Contest.inc
-
-.data
-PUBLIC gEnemies
-PUBLIC gEnemyCount
-
-gEnemies Enemy 3 DUP(<0,0,0,0>)
-gEnemyCount DWORD 1
-
 .code
 ; sets up the enemy to have inceasing stats over time
 LevelUpEnemy PROC

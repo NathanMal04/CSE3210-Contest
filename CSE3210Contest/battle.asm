@@ -1,22 +1,23 @@
 INCLUDE Contest.inc
 
 .data
-menu		BYTE "Choose: 1)Attack  2)Heal  >",0
-playerDMG   BYTE "You dealt ",0
-enemyDMG    BYTE "Enemy dealt ",0
-endDMG		BYTE " damage",0
-continue	BYTE "Press any key to continue",0
-win			BYTE "You defeated the enemy",0
-lose		BYTE "The enemy has defeated you",0
-runOut		BYTE "No healing left",0
-startHeal	BYTE "You healed for ",0
-endHeal		BYTE " HP",0
+menu			BYTE "Choose: 1)Attack  2)Heal  >",0
+playerDMG		BYTE "You dealt ",0
+enemyDMG		BYTE "Enemy dealt ",0
+endDMG			BYTE " damage",0
+continue		BYTE "Press any key to continue",0
+win				BYTE "You defeated the enemy",0
+lose			BYTE "The enemy has defeated you",0
+runOut			BYTE "No healing left",0
+startHeal		BYTE "You healed for ",0
+endHeal			BYTE " HP",0
+focusedEnemy	DWORD 1
 
 .code
 PrintStats MACRO
 	INVOKE ClearScreen
 	INVOKE DisplayPlayer
-	INVOKE DisplayEnemy
+	INVOKE DisplayEnemy, focusedEnemy
 	INVOKE DisplayBar
 ENDM
 
@@ -128,7 +129,7 @@ WinBattle:
 	MOV EDX, 0
 	MUL gLevel
 	ADD gGold, EAX
-	INVOKE CreateEnemy
+	INVOKE LevelUpEnemy
 	ret
 BattleLoop ENDP
 

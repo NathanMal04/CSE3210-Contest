@@ -30,6 +30,12 @@ gHealPots	  DWORD PLAYER_BASE_HEAL
 gHealing	  DWORD HEAL_MIN
 
 ; enemy
+PUBLIC gEnemies
+PUBLIC gEnemyCount
+
+gEnemies Enemy 3 DUP(<0,0,0,0>)
+gEnemyCount DWORD 1
+
 PUBLIC gEnemyHP 
 PUBLIC gEnemyMaxHP
 PUBLIC gEnemyATK
@@ -56,6 +62,7 @@ gShopHPot	DWORD PLAYER_UPGRADE_HPot_PRICE
 PUBLIC main
 main PROC
 Battle:
+	INVOKE CreateEnemy
 	INVOKE BattleLoop
 	MOV EAX, gGameState
 	CMP EAX, 0

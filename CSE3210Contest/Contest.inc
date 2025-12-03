@@ -59,7 +59,7 @@ Enemy STRUCT
 Enemy ENDS
 
 EXTERNDEF gEnemyCount:DWORD
-EXTERNDEF gEnemies:BYTE
+EXTERNDEF gEnemies:Enemy
 
 EXTERNDEF gEnemyHP:DWORD
 EXTERNDEF gEnemyMaxHP:DWORD
@@ -87,11 +87,12 @@ ClearScreen		PROTO
 PrintStr		PROTO pStr:PTR BYTE
 PrintNum		PROTO val:DWORD
 DisplayPlayer	PROTO
-DisplayEnemy	PROTO
+DisplayEnemy	PROTO eNum:DWORD
 DisplayBar		PROTO
 DisplayMenu		PROTO
 
 ; enemy
+LevelUpEnemy    PROTO
 CreateEnemy		PROTO
 
 ; battle
