@@ -51,6 +51,16 @@ EXTERNDEF gPlayerATK:DWORD
 EXTERNDEF gPlayerDEF:DWORD
 
 ; enemy stats
+Enemy STRUCT
+    HP      DWORD ?
+    MaxHP   DWORD ?
+    ATK     DWORD ?
+    DEF     DWORD ?
+Enemy ENDS
+
+EXTERNDEF gEnemyCount:DWORD
+EXTERNDEF gEnemies:BYTE
+
 EXTERNDEF gEnemyHP:DWORD
 EXTERNDEF gEnemyMaxHP:DWORD
 EXTERNDEF gEnemyATK:DWORD

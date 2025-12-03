@@ -1,5 +1,9 @@
 INCLUDE Contest.inc
 
+.data
+gEnemies Enemy ENEMY_COUNT DUP(<0,0,0,0>)
+gEnemyCount DWORD 1
+
 .code
 ; sets up the enemy to have inceasing stats over time
 CreateEnemy PROC
