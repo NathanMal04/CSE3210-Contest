@@ -36,13 +36,15 @@ CreateEnemy PROC
 	MOV gEnemyCount, EAX
 	MOV ECX, gEnemyCount
 	InitEnemyLoop:
+		MOV ESI, SIZEOF Enemy
+		IMUL ESI, ECX
 		MOV EAX, gEnemyMaxHP
-		MOV gEnemies[SIZEOF Enemy].HP, EAX
-		MOV gEnemies[SIZEOF Enemy].MaxHP, EAX
+		MOV gEnemies[ESI].HP, EAX
+		MOV gEnemies[ESI].MaxHP, EAX
 		MOV EAX, gEnemyATK
-		MOV gEnemies[SIZEOF Enemy].ATK, EAX
+		MOV gEnemies[ESI].ATK, EAX
 		MOV EAX, gEnemyDEF
-		MOV gEnemies[SIZEOF Enemy].DEF, EAX
+		MOV gEnemies[ESI].DEF, EAX
 		LOOP InitEnemyLoop
 	ret
 CreateEnemy ENDP
