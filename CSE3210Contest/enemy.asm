@@ -1,12 +1,15 @@
 INCLUDE Contest.inc
 
 .data
-gEnemies Enemy ENEMY_COUNT DUP(<0,0,0,0>)
+PUBLIC gEnemies
+PUBLIC gEnemyCount
+
+gEnemies Enemy 3 DUP(<0,0,0,0>)
 gEnemyCount DWORD 1
 
 .code
 ; sets up the enemy to have inceasing stats over time
-CreateEnemy PROC
+LevelUpEnemy PROC
 	MOV EAX, ENEMY_STEP_HP
 	INC EAX
 	CALL RandomRange
@@ -24,5 +27,22 @@ CreateEnemy PROC
 	CALL RandomRange
 	ADD gEnemyDEF, EAX
 	ret
+LevelUpEnemy ENDP
+	
+CreateEnemy PROC
+	ret
 CreateEnemy ENDP
+
+CreateSingleEnemy PROC
+	MOV gEnemyCount, 1
+	MOV EAX, gEnemyMaxHP
+	MOV gEnemies[SIZEOF Enemy].HP, EAX
+	MOV gEnemies[SIZEOF Enemy].MaxHP, EAX
+	MOV EAX, gEnemyATK
+	MOV gEnemies[SIZEOF Enemy].ATK, EAX
+	MOV EAX, gEnemyDEF
+	MOV gEnemies[SIZEOF Enemy].DEF, EAX
+	ret
+CreateSingleEnemy ENDP
+
 END
