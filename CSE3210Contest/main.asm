@@ -61,6 +61,7 @@ gShopHPot	DWORD PLAYER_UPGRADE_HPot_PRICE
 .code
 PUBLIC main
 main PROC
+INVOKE Randomize
 Battle:
 	INVOKE CreateEnemy
 	INVOKE BattleLoop

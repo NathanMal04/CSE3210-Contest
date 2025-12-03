@@ -11,19 +11,21 @@ lose			BYTE "The enemy has defeated you",0
 runOut			BYTE "No healing left",0
 startHeal		BYTE "You healed for ",0
 endHeal			BYTE " HP",0
-focusedEnemy	DWORD 1
 
 .code
-PrintStats MACRO
+PrintStats PROC
 	INVOKE ClearScreen
 	INVOKE DisplayPlayer
-	INVOKE DisplayEnemy, focusedEnemy
+	MOV ECX, gEnemyCount
+	ListEnemies:
+		INVOKE DisplayEnemy, ECX
+		LOOP ListEnemies
 	INVOKE DisplayBar
-ENDM
+PrintStats ENDP
 
 BattleLoop PROC
 MainLoop:
-	PrintStats
+	INVOKE PrintStats
 	INVOKE PrintStr, ADDR menu
 	call ReadChar
 	CMP al, '1'
@@ -46,7 +48,7 @@ Attack:
 	SUB gEnemyHP, EAX
 	MOV EBX, EAX
 
-	PrintStats
+	INVOKE PrintStats
 	INVOKE PrintStr, ADDR playerDMG
 	INVOKE PrintNum, EBX
 	INVOKE PrintStr, ADDR endDMG
@@ -69,7 +71,7 @@ Attack:
 	SUB gPlayerHP, EAX
 	MOV EBX, EAX
 
-	PrintStats
+	INVOKE PrintStats
 	INVOKE PrintStr, ADDR enemyDMG
 	INVOKE PrintNum, EBX
 	INVOKE PrintStr, ADDR endDMG
@@ -98,7 +100,7 @@ DisplayHeal:
 	MOV EBX, EAX
 	SUB EBX, gPlayerHP
 	MOV gPlayerHP, EAX
-	PrintStats
+	INVOKE PrintStats
 	INVOKE PrintStr, ADDR startHeal
 	INVOKE PrintNum, EBX
 	INVOKE PrintStr, ADDR endHeal
@@ -107,7 +109,7 @@ DisplayHeal:
 	call ReadChar
 	JMP MainLoop
 OutOfPots:
-	PrintStats
+	INVOKE PrintStats
 	INVOKE PrintSTR, ADDR runOut
 	call ReadChar
 	JMP MainLoop

@@ -30,6 +30,7 @@ CreateEnemy PROC
 	InitEnemyLoop:
 		MOV ESI, SIZEOF Enemy
 		IMUL ESI, ECX
+		SUB ESI, SIZEOF Enemy
 		MOV EAX, gEnemyMaxHP
 		MOV gEnemies[ESI].HP, EAX
 		MOV gEnemies[ESI].MaxHP, EAX

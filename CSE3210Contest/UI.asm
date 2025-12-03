@@ -4,10 +4,11 @@ INCLUDE Contest.inc
 .data
 healLab   BYTE "  Heal Pots: ",0
 plLab     BYTE "YOU  HP: ",0
-enLab     BYTE "Enemy  HP: ",0
+enLab     BYTE "  HP: ",0
 atkLab    BYTE "  ATK: ",0
 defLab    BYTE "  DEF: ",0
 slash     BYTE " / ",0
+enNumLab  BYTE "Enemy #",0
 bar       BYTE "------------------------------",0
 
 .code
@@ -62,6 +63,8 @@ DisplayPlayer ENDP
 DisplayEnemy PROC EnemyNumber:DWORD
     MOV ESI, SIZEOF Enemy
     IMUL ESI, EnemyNumber
+    INVOKE PrintStr, ADDR enNumLab
+    INVOKE PrintNum, EnemyNumber
     INVOKE PrintStr, ADDR enLab
     INVOKE PrintNum, gEnemies[ESI].HP
     INVOKE PrintStr, ADDR slash
