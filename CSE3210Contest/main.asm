@@ -2,6 +2,7 @@ INCLUDE Contest.inc
 
 .data
 ; ----Local----
+menu	BYTE "Game Over! Choose: 1)Restart  2)Exit >",0
 
 ; ----Global----
 
@@ -60,18 +61,57 @@ gShopHPot	DWORD PLAYER_UPGRADE_HPot_PRICE
 
 .code
 PUBLIC main
+init PROC
+
+	INVOKE Randomize
+	MOV gLevel, 1
+	MOV gGold, 0
+	MOV gGameState, 1
+
+	MOV gPlayerHP, PLAYER_BASE_HP
+	MOV gPlayerMaxHP, PLAYER_BASE_HP
+	MOV gPlayerATK, PLAYER_BASE_ATK
+	MOV gPlayerDEF, PLAYER_BASE_DEF
+	MOV gHealPots, PLAYER_BASE_HEAL
+	MOV gHealing, HEAL_MIN
+
+	MOV gEnemyHP, ENEMY_BASE_HP
+	MOV gEnemyMaxHP, ENEMY_BASE_HP
+	MOV gEnemyATK, ENEMY_BASE_ATK
+	MOV gEnemyDEF, ENEMY_BASE_DEF
+
+	MOV gShopHP, PLAYER_UPGRADE_HP_PRICE
+	MOV gShopATK, PLAYER_UPGRADE_ATK_PRICE
+	MOV gShopDEF, PLAYER_UPGRADE_DEF_PRICE
+	MOV gShopHPot, PLAYER_UPGRADE_HPot_PRICE
+
+	ret
+init ENDP
+
 main PROC
-INVOKE Randomize
+Start:
+	INVOKE init
 Battle:
 	INVOKE CreateEnemy
 	INVOKE BattleLoop
 	MOV EAX, gGameState
 	CMP EAX, 0
-	JZ Quit
+	JZ gameEnd
 	INC gLevel
 
 	INVOKE Shop
 	JMP Battle
+gameEnd:
+	INVOKE ClearScreen
+	INVOKE PrintStr, ADDR menu
+	call ReadChar
+	CMP al, '1'
+	JE Start
+	CMP al, '2'
+	JE Quit
+
+	JMP gameEnd
+
 Quit:
 	exit
 main ENDP
