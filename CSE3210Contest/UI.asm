@@ -9,6 +9,7 @@ atkLab    BYTE "  ATK: ",0
 defLab    BYTE "  DEF: ",0
 slash     BYTE " / ",0
 enNumLab  BYTE "Enemy #",0
+enDead	  BYTE "  DEAD",0
 bar       BYTE "------------------------------",0
 
 .code
@@ -66,6 +67,8 @@ DisplayEnemy PROC EnemyNumber:DWORD
     SUB ESI, SIZEOF Enemy
     INVOKE PrintStr, ADDR enNumLab
     INVOKE PrintNum, EnemyNumber
+    CMP gEnemies[ESI].HP, 0
+    JLE Dead
     INVOKE PrintStr, ADDR enLab
     INVOKE PrintNum, gEnemies[ESI].HP
     INVOKE PrintStr, ADDR slash
@@ -76,6 +79,10 @@ DisplayEnemy PROC EnemyNumber:DWORD
     INVOKE PrintNum, gEnemies[ESI].ATK
     INVOKE PrintCRLF
     ret
+    Dead:
+        INVOKE PrintStr, ADDR enDead
+        INVOKE PrintCRLF
+        ret
 DisplayEnemy ENDP
 
 DisplayBar PROC

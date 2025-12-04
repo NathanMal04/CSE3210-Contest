@@ -4,7 +4,8 @@ INCLUDE Contest.inc
 menu			BYTE "Choose: 1)Attack  2)Heal  >",0
 choice			BYTE "What enemy will you attack? ",0
 playerDMG		BYTE "You dealt ",0
-enemyDMG		BYTE "Enemy dealt ",0
+enemyDMGNUM		BYTE "Enemy #",0
+enemyDMGVAL		BYTE " dealt ",0
 endDMG			BYTE " damage",0
 continue		BYTE "Press any key to continue",0
 win				BYTE "You defeated the enemy",0
@@ -49,12 +50,18 @@ AttackBegin:
 	JNE ChooseEnemy
 	MOV ECX, 1
 	JMP AttackEnemy
+
 ChooseEnemy:
 	INVOKE PrintStats
 	INVOKE PrintStr, ADDR choice
 	XOR EAX, EAX
 	call ReadDec
+	CMP EAX, gEnemyCount
+	JG ChooseEnemy
+	CMP EAX, 0
+	JLE ChooseEnemy
 	MOV ECX, EAX
+
 AttackEnemy:
 	MOV ESI, SIZEOF Enemy
     IMUL ESI, ECX
@@ -86,20 +93,38 @@ Results:
 	CMP battleTracker, 0
 	JE WinBattle
 
-	MOV EAX, gEnemyATK
+	MOV EDI, 1
+EnemyAttack:
+	MOV ESI, SIZEOF Enemy
+    IMUL ESI, EDI
+    SUB ESI, SIZEOF Enemy
+
+	CMP gEnemies[ESI].HP, 0
+	JG EnemyAlive
+	INC EDI
+	JMP EnemyAttack
+
+EnemyAlive:
+	MOV EAX, gEnemies[ESI].ATK
 	SHR EAX, 2
 	MOV EBX, EAX
 	SHR EBX, 1
 	INC EAX
 	CALL RandomRange
 	SUB EAX, EBX
-	ADD EAX, gEnemyATK
+	ADD EAX, gEnemies[ESI].ATK
 	SUB EAX, gPlayerDEF
+	CMP EAX, 0
+	JGE NoNegDMG
+	MOV EAX, 0
+	NoNegDMG:
 	SUB gPlayerHP, EAX
 	MOV EBX, EAX
 
 	INVOKE PrintStats
-	INVOKE PrintStr, ADDR enemyDMG
+	INVOKE PrintStr, ADDR enemyDMGNUM
+	INVOKE PrintNum, EDI
+	INVOKE PrintStr, ADDR enemyDMGVAL
 	INVOKE PrintNum, EBX
 	INVOKE PrintStr, ADDR endDMG
 	INVOKE PrintCRLF
@@ -108,6 +133,10 @@ Results:
 
 	CMP gPlayerHP, 0
 	JLE LoseBattle
+
+	INC EDI
+	CMP EDI, gEnemyCount
+	JLE EnemyAttack
 
 	JMP MainLoop
 
