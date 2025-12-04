@@ -11,9 +11,9 @@ PUBLIC gLevel
 PUBLIC gGold
 PUBLIC gGameState
 
-gLevel		DWORD 1
-gGold		DWORD 0
-gGameState	DWORD 1
+gLevel		DWORD ?
+gGold		DWORD ?
+gGameState	DWORD ?
 
 ; player
 PUBLIC gPlayerHP
@@ -23,12 +23,12 @@ PUBLIC gPlayerDEF
 PUBLIC gHealPots
 PUBLIC gHealing
 
-gPlayerHP     DWORD PLAYER_BASE_HP
-gPlayerMaxHP  DWORD PLAYER_BASE_HP
-gPlayerATK    DWORD PLAYER_BASE_ATK
-gPlayerDEF    DWORD PLAYER_BASE_DEF
-gHealPots	  DWORD PLAYER_BASE_HEAL
-gHealing	  DWORD HEAL_MIN
+gPlayerHP     DWORD ?
+gPlayerMaxHP  DWORD ?
+gPlayerATK    DWORD ?
+gPlayerDEF    DWORD ?
+gHealPots	  DWORD ?
+gHealing	  DWORD ?
 
 ; enemy
 PUBLIC gEnemies
@@ -42,10 +42,10 @@ PUBLIC gEnemyMaxHP
 PUBLIC gEnemyATK
 PUBLIC gEnemyDEF
 
-gEnemyHP      DWORD ENEMY_BASE_HP
-gEnemyMaxHP   DWORD ENEMY_BASE_HP
-gEnemyATK     DWORD ENEMY_BASE_ATK
-gEnemyDEF     DWORD ENEMY_BASE_DEF
+gEnemyHP      DWORD ?
+gEnemyMaxHP   DWORD ?
+gEnemyATK     DWORD ?
+gEnemyDEF     DWORD ?
 
 ; shop
 PUBLIC gShopHP
@@ -53,10 +53,10 @@ PUBLIC gShopATK
 PUBLIC gShopDEF
 PUBLIC gShopHPot
 
-gShopHP		DWORD PLAYER_UPGRADE_HP_PRICE
-gShopATK	DWORD PLAYER_UPGRADE_ATK_PRICE
-gShopDEF	DWORD PLAYER_UPGRADE_DEF_PRICE
-gShopHPot	DWORD PLAYER_UPGRADE_HPot_PRICE
+gShopHP		DWORD ?
+gShopATK	DWORD ?
+gShopDEF	DWORD ?
+gShopHPot	DWORD ?
 
 
 .code

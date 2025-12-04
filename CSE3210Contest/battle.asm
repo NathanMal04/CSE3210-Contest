@@ -66,6 +66,10 @@ AttackEnemy:
 	MOV ESI, SIZEOF Enemy
     IMUL ESI, ECX
     SUB ESI, SIZEOF Enemy
+
+	CMP gEnemies[ESI].HP, 0
+	JLE ChooseEnemy
+
 	MOV EAX, gPlayerATK
 	SHR EAX, 2
 	MOV EBX, EAX
