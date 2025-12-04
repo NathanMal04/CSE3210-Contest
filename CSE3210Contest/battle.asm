@@ -2,6 +2,7 @@ INCLUDE Contest.inc
 
 .data
 menu			BYTE "Choose: 1)Attack  2)Heal  >",0
+choice			BYTE "What enemy will you attack? ",0
 playerDMG		BYTE "You dealt ",0
 enemyDMG		BYTE "Enemy dealt ",0
 endDMG			BYTE " damage",0
@@ -33,13 +34,27 @@ MainLoop:
 	INVOKE PrintStr, ADDR menu
 	call ReadChar
 	CMP al, '1'
-	JE Attack
+	JE AttackBegin
 	CMP al, '2'
 	JE Heal
 
 	JMP MainLoop
 
-Attack:
+AttackBegin:
+	CMP gEnemyCount, 1
+	JNE ChooseEnemy
+	MOV ECX, 1
+	JMP AttackEnemy
+ChooseEnemy:
+	INVOKE PrintStats
+	INVOKE PrintStr, ADDR choice
+	XOR EAX, EAX
+	call ReadDec
+	MOV ECX, EAX
+AttackEnemy:
+	MOV ESI, SIZEOF Enemy
+    IMUL ESI, ECX
+    SUB ESI, SIZEOF Enemy
 	MOV EAX, gPlayerATK
 	SHR EAX, 2
 	MOV EBX, EAX
@@ -48,8 +63,8 @@ Attack:
 	CALL RandomRange
 	SUB EAX, EBX
 	ADD EAX, gPlayerATK
-	SUB EAX, gEnemyDEF
-	SUB gEnemyHP, EAX
+	SUB EAX, gEnemies[ESI].DEF
+	SUB gEnemies[ESI].HP, EAX
 	MOV EBX, EAX
 
 	INVOKE PrintStats
