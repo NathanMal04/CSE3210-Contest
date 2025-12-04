@@ -32,11 +32,17 @@ CreateEnemy PROC
 		IMUL ESI, ECX
 		SUB ESI, SIZEOF Enemy
 		MOV EAX, gEnemyMaxHP
+		XOR EDX, EDX
+		DIV gEnemyCount
 		MOV gEnemies[ESI].HP, EAX
 		MOV gEnemies[ESI].MaxHP, EAX
 		MOV EAX, gEnemyATK
+		XOR EDX, EDX
+		DIV gEnemyCount
 		MOV gEnemies[ESI].ATK, EAX
 		MOV EAX, gEnemyDEF
+		XOR EDX, EDX
+		DIV gEnemyCount
 		MOV gEnemies[ESI].DEF, EAX
 		LOOP InitEnemyLoop
 	ret

@@ -63,6 +63,7 @@ DisplayPlayer ENDP
 DisplayEnemy PROC EnemyNumber:DWORD
     MOV ESI, SIZEOF Enemy
     IMUL ESI, EnemyNumber
+    SUB ESI, SIZEOF Enemy
     INVOKE PrintStr, ADDR enNumLab
     INVOKE PrintNum, EnemyNumber
     INVOKE PrintStr, ADDR enLab

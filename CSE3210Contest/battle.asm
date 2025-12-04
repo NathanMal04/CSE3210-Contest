@@ -16,11 +16,15 @@ endHeal			BYTE " HP",0
 PrintStats PROC
 	INVOKE ClearScreen
 	INVOKE DisplayPlayer
-	MOV ECX, gEnemyCount
+	INVOKE DisplayBar
+	MOV ECX, 1
 	ListEnemies:
 		INVOKE DisplayEnemy, ECX
-		LOOP ListEnemies
+		INC ECX
+		CMP ECX, gEnemyCount
+		JLE ListEnemies
 	INVOKE DisplayBar
+	ret
 PrintStats ENDP
 
 BattleLoop PROC
