@@ -13,6 +13,8 @@ runOut			BYTE "No healing left",0
 startHeal		BYTE "You healed for ",0
 endHeal			BYTE " HP",0
 
+battleTracker	DWORD 0
+
 .code
 PrintStats PROC
 	INVOKE ClearScreen
@@ -29,6 +31,8 @@ PrintStats PROC
 PrintStats ENDP
 
 BattleLoop PROC
+MOV EAX, gEnemyCount
+MOV battleTracker, EAX
 MainLoop:
 	INVOKE PrintStats
 	INVOKE PrintStr, ADDR menu
@@ -66,7 +70,11 @@ AttackEnemy:
 	SUB EAX, gEnemies[ESI].DEF
 	SUB gEnemies[ESI].HP, EAX
 	MOV EBX, EAX
+	CMP gEnemies[ESI].HP, 0
+	JG Results
+	DEC battleTracker
 
+Results:
 	INVOKE PrintStats
 	INVOKE PrintStr, ADDR playerDMG
 	INVOKE PrintNum, EBX
@@ -75,8 +83,8 @@ AttackEnemy:
 	INVOKE PrintStr, ADDR continue
 	call ReadChar
 
-	CMP gEnemyHP, 0
-	JLE WinBattle
+	CMP battleTracker, 0
+	JE WinBattle
 
 	MOV EAX, gEnemyATK
 	SHR EAX, 2
